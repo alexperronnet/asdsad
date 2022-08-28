@@ -1,0 +1,39 @@
+// DM Sans - regular
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("dm-sans-400"),
+    url("/src/fonts/dm-sans/dm-sans-400.woff2") format("woff2"),
+    url("/src/fonts/dm-sans/dm-sans-400.woff") format("woff");
+}
+
+// DM Sans - medium
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 500;
+  src: local("dm-sans-500"),
+    url("/src/fonts/dm-sans/dm-sans-500.woff2") format("woff2"),
+    url("/src/fonts/dm-sans/dm-sans-500.woff") format("woff");
+}
+
+// Roboto - regular
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local("roboto-400"),
+    url("/src/fonts/roboto/roboto-400.woff2") format("woff2"),
+    url("/src/fonts/roboto/roboto-400.woff") format("woff");
+}
+
+// Roboto - medium
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  src: local("roboto-500"),
+    url("/src/fonts/roboto/roboto-500.woff2") format("woff2"),
+    url("/src/fonts/roboto/roboto-500.woff") format("woff");
+}

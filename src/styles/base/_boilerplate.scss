@@ -1,0 +1,10 @@
+@use "/src/styles/abstracts/variables" as *;
+
+body {
+  color: $color-black;
+  background-color: $color-white;
+  font-family: $ff-body;
+  font-size: 16rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
