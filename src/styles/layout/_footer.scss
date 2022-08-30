@@ -1,0 +1,11 @@
+@use "/src/styles/abstracts/variables" as *;
+
+.footer {
+  color: $color-red;
+  font-weight: 500;
+
+  @media (max-width: 768px) {
+    align-self: center;
+    text-align: center;
+  }
+}

@@ -3,6 +3,7 @@
 body {
   max-width: 1280rem;
   width: calc(100% - (30rem * 2));
+  height: 100vh;
   margin-inline: auto;
   padding-block: 48rem;
   color: $color-black;
@@ -15,4 +16,11 @@ body {
   @media (max-width: 768px) {
     padding-block: 32rem;
   }
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
