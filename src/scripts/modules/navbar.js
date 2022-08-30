@@ -34,6 +34,15 @@ document.addEventListener("click", event => {
   }
 })
 
+// Close navbar and remove overlay when user press ESC
+document.addEventListener("keydown", event => {
+  if (nav.hasAttribute("data-visible") && event.keyCode === 27) {
+    nav.removeAttribute("data-visible")
+    header.removeAttribute("data-overlay")
+    toggleNav.setAttribute("aria-expanded", false)
+  }
+})
+
 // Close navbar and remove overlay when user resize window
 new ResizeObserver(entries => {
   if (entries[0].contentRect.width >= 768) {
