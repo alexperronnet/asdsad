@@ -24,3 +24,8 @@ body {
     padding-block: 32rem;
   }
 }
+
+::selection {
+  color: $color-red;
+  background-color: rgba($color-red-tint, 0.2);
+}
