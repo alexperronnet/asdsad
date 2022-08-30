@@ -2,3 +2,7 @@
 @use "/src/styles/base/reset";
 @use "/src/styles/base/fonts";
 @use "/src/styles/base/boilerplate";
+@use "/src/styles/base/utilities";
+
+// Layout styles
+@use "/src/styles/layout/header";

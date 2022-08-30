@@ -1,55 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
-    <head>
-      <!-- Compatibility -->
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Compatibility -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <!-- Primary Meta Tags -->
-      <title>Réservation | GameOn</title>
-      <meta name="title" content="Réservation | GameOn" />
-      <meta name="description" content="Marathon national de jeux vidéos" />
+    <!-- Primary Meta Tags -->
+    <title>Réservation | GameOn</title>
+    <meta name="title" content="Réservation | GameOn" />
+    <meta name="description" content="Marathon national de jeux vidéos" />
 
-      <!-- Open Graph / Facebook -->
-      <meta property="og:type" content="website" />
-      <meta
-        property="og:url"
-        content="https://alexperronnet.github.io/openclassrooms-p4-gameon"
-      />
-      <meta property="og:title" content="Réservation | GameOn" />
-      <meta
-        property="og:description"
-        content="Marathon national de jeux vidéos"
-      />
-      <meta
-        property="og:image"
-        content="https://alexperronnet.github.io/openclassrooms-p4-gameon/og-image.png"
-      />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://alexperronnet.github.io/openclassrooms-p4-gameon"
+    />
+    <meta property="og:title" content="Réservation | GameOn" />
+    <meta
+      property="og:description"
+      content="Marathon national de jeux vidéos"
+    />
+    <meta
+      property="og:image"
+      content="https://alexperronnet.github.io/openclassrooms-p4-gameon/og-image.png"
+    />
 
-      <!-- Twitter -->
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta
-        property="twitter:url"
-        content="https://alexperronnet.github.io/openclassrooms-p4-gameon"
-      />
-      <meta property="twitter:title" content="Réservation | GameOn" />
-      <meta
-        property="twitter:description"
-        content="Marathon national de jeux vidéos"
-      />
-      <meta
-        property="twitter:image"
-        content="https://alexperronnet.github.io/openclassrooms-p4-gameon/og-image.png"
-      />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://alexperronnet.github.io/openclassrooms-p4-gameon"
+    />
+    <meta property="twitter:title" content="Réservation | GameOn" />
+    <meta
+      property="twitter:description"
+      content="Marathon national de jeux vidéos"
+    />
+    <meta
+      property="twitter:image"
+      content="https://alexperronnet.github.io/openclassrooms-p4-gameon/og-image.png"
+    />
 
-      <!-- Favicon -->
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <link rel="icon" type="image/png" href="/favicon.png" />
-    </head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- Header -->
+      <header class="header">
+        <!-- Logo -->
+        <img
+          src="/src/assets/logo-red.svg"
+          alt="Logo GameOn"
+          class="header__logo"
+        />
+
+        <!-- Toggle resposive navbar -->
+        <button
+          class="header__toggle-nav"
+          aria-controls="header__nav"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Menu</span>
+        </button>
+
+        <!-- Navigation -->
+        <nav class="header__nav">
+          <a href="#" class="header__nav-link active" data-active
+            >Détail de l'évènement</a
+          >
+          <a href="#" class="header__nav-link">À propos</a>
+          <a href="#" class="header__nav-link">Contact</a>
+          <a href="#" class="header__nav-link">Évènements passés</a>
+        </nav>
+      </header>
+    </div>
     <script type="module" src="/src/scripts/main.js"></script>
   </body>
 </html>

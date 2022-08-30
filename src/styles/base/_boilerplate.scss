@@ -1,10 +1,18 @@
 @use "/src/styles/abstracts/variables" as *;
 
 body {
+  max-width: 1280rem;
+  width: calc(100% - (30rem * 2));
+  margin-inline: auto;
+  padding-block: 48rem;
   color: $color-black;
   background-color: $color-white;
   font-family: $ff-body;
   font-size: 16rem;
   font-weight: 400;
   line-height: 1.25;
+
+  @media (max-width: 768px) {
+    padding-block: 32rem;
+  }
 }
