@@ -15,39 +15,34 @@ toggleNav.addEventListener("click", () => {
   header.toggleAttribute("data-overlay")
 
   // Indicate if the control is expanded or collapsed
-  if (nav.hasAttribute("data-visible")) {
-    toggleNav.setAttribute("aria-expanded", true)
-  } else {
-    toggleNav.setAttribute("aria-expanded", false)
-  }
+  nav.hasAttribute("data-visible")
+    ? toggleNav.setAttribute("aria-expanded", true)
+    : toggleNav.setAttribute("aria-expanded", false)
 })
 
+// Manage closing navbar
+const closeNav = () => {
+  nav.removeAttribute("data-visible")
+  header.removeAttribute("data-overlay")
+  toggleNav.setAttribute("aria-expanded", false)
+}
+
 // Close navbar and remove overlay when user click outside or on link
-document.addEventListener("click", event => {
-  if (
-    event.target.className !== "header__nav" &&
-    event.target.className !== "header__toggle-nav"
-  ) {
-    nav.removeAttribute("data-visible")
-    header.removeAttribute("data-overlay")
-    toggleNav.setAttribute("aria-expanded", false)
-  }
+header.addEventListener("click", event => {
+  event.target.className !== "header__nav" &&
+  event.target.className !== "header__toggle-nav"
+    ? closeNav()
+    : null
 })
 
 // Close navbar and remove overlay when user press ESC
-document.addEventListener("keydown", event => {
-  if (nav.hasAttribute("data-visible") && event.keyCode === 27) {
-    nav.removeAttribute("data-visible")
-    header.removeAttribute("data-overlay")
-    toggleNav.setAttribute("aria-expanded", false)
-  }
+header.addEventListener("keydown", event => {
+  nav.hasAttribute("data-visible") && event.keyCode === 27 ? closeNav() : null
 })
 
 // Close navbar and remove overlay when user resize window
 new ResizeObserver(entries => {
   if (entries[0].contentRect.width >= 768) {
-    nav.removeAttribute("data-visible")
-    header.removeAttribute("data-overlay")
-    toggleNav.setAttribute("aria-expanded", false)
+    closeNav()
   }
 }).observe(document.body)
