@@ -9,16 +9,11 @@ for (const navLink of navLinks) {
   navLink.hasAttribute("data-active") && (navLink.tabIndex = -1)
 }
 
-toggleNav.addEventListener("click", () => {
-  // Toggle responsive navbar and overlay
+// Manage toggling navbar
+const togglegNav = () => {
   nav.toggleAttribute("data-visible")
   header.toggleAttribute("data-overlay")
-
-  // Indicate if the control is expanded or collapsed
-  nav.hasAttribute("data-visible")
-    ? toggleNav.setAttribute("aria-expanded", true)
-    : toggleNav.setAttribute("aria-expanded", false)
-})
+}
 
 // Manage closing navbar
 const closeNav = () => {
@@ -27,7 +22,17 @@ const closeNav = () => {
   toggleNav.setAttribute("aria-expanded", false)
 }
 
-// Close navbar and remove overlay when user click outside or on link
+// Opening navbar
+toggleNav.addEventListener("click", () => {
+  togglegNav()
+
+  // Indicate if the control is expanded or collapsed
+  nav.hasAttribute("data-visible")
+    ? (toggleNav.ariaExpanded = true)
+    : (toggleNav.ariaExpanded = false)
+})
+
+// Close navbar when user click outside or on link
 header.addEventListener("click", event => {
   event.target.className !== "header__nav" &&
   event.target.className !== "header__toggle-nav"
@@ -35,12 +40,12 @@ header.addEventListener("click", event => {
     : null
 })
 
-// Close navbar and remove overlay when user press ESC
+// Close navbar when user press ESC
 header.addEventListener("keydown", event => {
   nav.hasAttribute("data-visible") && event.keyCode === 27 ? closeNav() : null
 })
 
-// Close navbar and remove overlay when user resize window
+// Close navbar when user resize window
 new ResizeObserver(entries => {
   if (entries[0].contentRect.width >= 768) {
     closeNav()
