@@ -22,7 +22,7 @@ const closeNav = () => {
   toggleNav.setAttribute("aria-expanded", false)
 }
 
-// Opening navbar
+// Open navbar
 toggleNav.addEventListener("click", () => {
   togglegNav()
 
@@ -33,21 +33,19 @@ toggleNav.addEventListener("click", () => {
 })
 
 // Close navbar when user click outside or on link
-header.addEventListener("click", event => {
+document.addEventListener("click", event => {
   event.target.className !== "header__nav" &&
   event.target.className !== "header__toggle-nav"
     ? closeNav()
     : null
 })
 
-// Close navbar when user press ESC
-header.addEventListener("keydown", event => {
+// Close navbar when user press ESC key
+document.addEventListener("keydown", event => {
   nav.hasAttribute("data-visible") && event.keyCode === 27 ? closeNav() : null
 })
 
 // Close navbar when user resize window
 new ResizeObserver(entries => {
-  if (entries[0].contentRect.width >= 768) {
-    closeNav()
-  }
+  entries[0].contentRect.width >= 76 && closeNav()
 }).observe(document.body)
