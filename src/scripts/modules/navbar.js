@@ -4,19 +4,21 @@ const toggleNav = document.querySelector(".header__toggle-nav")
 const nav = document.querySelector(".header__nav")
 const navLinks = document.getElementsByClassName("header__nav-link")
 
-// Prevent tabindex when link is active
+// Prevent tabindex when nav link is active
 for (const navLink of navLinks) {
-  navLink.hasAttribute("data-active") && (navLink.tabIndex = -1)
+  if (navLink.hasAttribute("data-active")) {
+    navLink.tabIndex = -1
+  }
 }
 
 // Manage toggling navbar
-const togglegNav = () => {
+const togglingNav = () => {
   nav.toggleAttribute("data-visible")
   header.toggleAttribute("data-overlay")
 }
 
 // Manage closing navbar
-const closeNav = () => {
+const closingNav = () => {
   nav.removeAttribute("data-visible")
   header.removeAttribute("data-overlay")
   toggleNav.setAttribute("aria-expanded", false)
@@ -24,28 +26,37 @@ const closeNav = () => {
 
 // Open navbar
 toggleNav.addEventListener("click", () => {
-  togglegNav()
+  togglingNav()
 
   // Indicate if the control is expanded or collapsed
-  nav.hasAttribute("data-visible")
-    ? (toggleNav.ariaExpanded = true)
-    : (toggleNav.ariaExpanded = false)
-})
-
-// Close navbar when user click outside or on link
-document.addEventListener("click", event => {
-  event.target.className !== "header__nav" &&
-  event.target.className !== "header__toggle-nav"
-    ? closeNav()
-    : null
+  if (nav.hasAttribute("data-visible")) {
+    toggleNav.ariaExpanded = true
+  } else {
+    toggleNav.ariaExpanded = false
+  }
 })
 
 // Close navbar when user press ESC key
 document.addEventListener("keydown", event => {
-  nav.hasAttribute("data-visible") && event.keyCode === 27 ? closeNav() : null
+  if (nav.hasAttribute("data-visible") && event.keyCode === 27) {
+    closingNav()
+  }
+})
+
+// Close navbar when user click outside the nav or on link
+document.addEventListener("click", event => {
+  const isOutsideNav =
+    !event.target.closest(".header__nav") &&
+    !event.target.closest(".header__toggle-nav")
+
+  if (nav.hasAttribute("data-visible") && isOutsideNav) {
+    closingNav()
+  }
 })
 
 // Close navbar when user resize window
 new ResizeObserver(entries => {
-  entries[0].contentRect.width >= 76 && closeNav()
+  if (entries[0].contentRect.width >= 768) {
+    closingNav()
+  }
 }).observe(document.body)

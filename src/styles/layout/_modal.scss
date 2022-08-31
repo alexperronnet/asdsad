@@ -8,6 +8,12 @@
   color: $color-white;
   background-color: $color-gray-dark;
   border-radius: 8rem;
+
+  @media (max-width: 640px) {
+    border-radius: 0;
+    min-height: 100vh;
+    height: 100%;
+  }
 }
 
 .modal[open] {
@@ -35,6 +41,7 @@
   flex-direction: column;
   gap: 12rem;
   padding: 24rem 38rem;
+  min-height: 100%;
 }
 
 .modal__close-button {

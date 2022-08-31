@@ -2,9 +2,10 @@
 const modal = document.querySelector(".modal")
 const openModalButton = document.querySelector(".hero__button")
 const closeModalButton = document.querySelector(".modal__close-button")
+const body = document.querySelector("body")
 
 // Manage closing modal
-const closeModal = () => {
+const closingModal = () => {
   modal.setAttribute("isClosing", "")
 
   modal.addEventListener(
@@ -24,20 +25,28 @@ openModalButton.addEventListener("click", () => {
 
 // Close modal
 closeModalButton.addEventListener("click", () => {
-  closeModal()
+  closingModal()
 })
 
-// Prevent default behaviour for ESC key on dialog
+// Prevent default behaviour for ESC key for dialog
 modal.addEventListener("cancel", event => {
   event.preventDefault()
 })
 
 // Close modal when user presse ESC key
 document.addEventListener("keydown", event => {
-  modal.hasAttribute("open") && event.keyCode === 27 ? closeModal() : null
+  if (modal.hasAttribute("open") && event.keyCode === 27) {
+    closingModal()
+  }
 })
 
 // Close modal when user click outside or on link
 document.addEventListener("click", event => {
-  event.target === modal && closeModal()
+  if (
+    modal.hasAttribute("open") &&
+    !event.target.closest(".modal__content") &&
+    !event.target.closest(".hero__button")
+  ) {
+    closingModal()
+  }
 })
