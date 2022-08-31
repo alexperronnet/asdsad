@@ -13,6 +13,8 @@ const closingModal = () => {
     () => {
       modal.removeAttribute("isClosing")
       modal.close()
+      // Restaure body scrolling
+      body.removeAttribute("no-scroll")
     },
     { once: true }
   )
@@ -21,6 +23,8 @@ const closingModal = () => {
 // Open modal
 openModalButton.addEventListener("click", () => {
   modal.showModal()
+  // Prevent body scrolling when modal is open
+  body.setAttribute("no-scroll", "")
 })
 
 // Close modal
