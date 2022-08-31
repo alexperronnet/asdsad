@@ -26,6 +26,6 @@ body {
 }
 
 ::selection {
-  color: $color-red;
-  background-color: rgba($color-red-tint, 0.2);
+  color: $color-white;
+  background-color: $color-red-tint;
 }

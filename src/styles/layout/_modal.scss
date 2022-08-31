@@ -1,0 +1,47 @@
+@use "/src/styles/abstracts/variables" as *;
+
+.modal {
+  all: revert;
+  max-width: 640rem;
+  padding: 0;
+  border: none;
+  color: $color-white;
+  background-color: $color-gray-dark;
+  border-radius: 8rem;
+}
+
+.modal[open] {
+  animation: slide-down 1000ms, fade-in 500ms;
+}
+
+.modal[isClosing] {
+  animation: slide-up 1000ms, fade-out 500ms;
+}
+
+.modal::backdrop {
+  background: rgba($color-purple, 0.5);
+}
+
+.modal[open]::backdrop {
+  animation: fade-in 500ms;
+}
+
+.modal[isClosing]::backdrop {
+  animation: fade-out 500ms;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12rem;
+  padding: 24rem 38rem;
+}
+
+.modal__close-button {
+  align-self: flex-end;
+  width: 32rem;
+  aspect-ratio: 1;
+  border: none;
+  background: url("/src/assets/icon-close-white.svg") no-repeat center;
+  cursor: pointer;
+}

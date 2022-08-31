@@ -3,8 +3,10 @@
 @use "/src/styles/base/fonts";
 @use "/src/styles/base/boilerplate";
 @use "/src/styles/base/utilities";
+@use "/src/styles/base/animations";
 
 // Layout styles
 @use "/src/styles/layout/header";
 @use "/src/styles/layout/hero";
+@use "/src/styles/layout/modal";
 @use "/src/styles/layout/footer";
