@@ -114,7 +114,7 @@
             <form class="form" name="registration" method="POST" novalidate>
               <!-- First name -->
               <label for="firstName" class="form__label">
-                Prénom
+                <span class="form__required">Prénom</span>
                 <input
                   class="form__input"
                   type="text"
@@ -127,7 +127,7 @@
 
               <!-- Last name -->
               <label for="lastName" class="form__label">
-                Nom
+                <span class="form__required">Nom</span>
                 <input
                   class="form__input"
                   type="text"
@@ -140,7 +140,7 @@
 
               <!-- Email -->
               <label for="email" class="form__label">
-                E-mail
+                <span class="form__required">E-mail</span>
                 <input
                   class="form__input"
                   type="email"
@@ -153,7 +153,7 @@
 
               <!-- Date of birth -->
               <label for="dateOfBirth" class="form__label">
-                Date de naissance
+                <span class="form__required">Date de naissance</span>
                 <input
                   class="form__input"
                   type="date"
@@ -165,7 +165,9 @@
 
               <!-- Participation count -->
               <label for="participationCount" class="form__label">
-                À combien de tournois GameOn avez-vous déjà participé ?
+                <span class="form__required"
+                  >À combien de tournois GameOn avez-vous déjà participé ?</span
+                >
                 <input
                   class="form__input"
                   type="number"
@@ -179,7 +181,7 @@
 
               <!-- Location tournament -->
               <fieldset class="form__fieldset">
-                <legend class="form__legend">
+                <legend class="form__legend form__required">
                   A quel tournoi souhaitez-vous participer cette année ?
                 </legend>
 
@@ -264,7 +266,9 @@
                     checked
                     required
                   />
-                  J'ai lu et accepté les conditions d'utilisation.
+                  <span class="form__required"
+                    >J'ai lu et accepté les conditions d'utilisation.</span
+                  >
                 </label>
 
                 <!-- Notification -->

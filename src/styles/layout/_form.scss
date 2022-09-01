@@ -1,5 +1,11 @@
 @use "/src/styles/abstracts/variables" as *;
 
+@mixin error-message {
+  font-size: 12rem;
+  font-family: $ff-body;
+  color: $color-red-tint;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -12,6 +18,12 @@
   border: 0;
 }
 
+.form__fieldset[data-error]::after {
+  content: attr(data-error);
+  @include error-message;
+  margin-top: 16rem;
+}
+
 .form__legend {
   font-family: $ff-heading;
   margin-bottom: 24rem;
@@ -21,7 +33,7 @@
 .form__radio-group {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12rem;
+  gap: 18rem;
 
   @media (max-width: 448px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -34,6 +46,11 @@
   gap: 12rem;
 }
 
+.form__checkbox-group[data-error]::after {
+  content: attr(data-error);
+  @include error-message;
+}
+
 .form__label {
   display: flex;
   flex-direction: column;
@@ -41,6 +58,21 @@
   font-size: 14rem;
   font-family: $ff-heading;
   cursor: pointer;
+}
+
+.form__required::after {
+  content: " \002A";
+  color: $color-red-tint;
+  font-size: 14rem;
+}
+
+.form__label[data-error]::after {
+  content: attr(data-error);
+  @include error-message;
+}
+
+.form__label[data-error] .form__input {
+  outline: 2rem solid $color-red-tint;
 }
 
 .form__label-radio,
@@ -63,7 +95,6 @@
 
 .form__input:focus-visible {
   outline: 2rem solid $color-blue;
-  outline-offset: 2rem;
 }
 
 .form__input-radio {
@@ -72,6 +103,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   outline: 2rem solid $color-green;
+  cursor: pointer;
 }
 
 .form__input-radio:checked {
@@ -85,6 +117,7 @@
   aspect-ratio: 1;
   background-color: $color-gray-light;
   border-radius: 4rem;
+  cursor: pointer;
 }
 
 .form__input-checkbox:checked {
