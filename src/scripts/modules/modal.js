@@ -13,7 +13,7 @@ const closingModal = () => {
     () => {
       modal.removeAttribute("isClosing")
       modal.close()
-      // Restaure body scrolling
+      // Restore body scrolling
       body.removeAttribute("no-scroll")
     },
     { once: true }

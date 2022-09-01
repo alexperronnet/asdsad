@@ -111,26 +111,177 @@
             </button>
 
             <!-- Form -->
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse,
-              inventore animi id dolores porro alias ipsam ipsum eius expedita
-              sapiente dolorem temporibus maxime aliquam perspiciatis veniam.
-              Provident assumenda dolore expedita. Animi ut architecto eaque
-              cumque, vero ducimus optio illo ipsa magni deleniti ratione minima
-              quisquam maxime repudiandae. Placeat recusandae, rem labore
-              dolorem corporis quibusdam veritatis quis optio adipisci quam!
-              Molestiae! Minus adipisci illo, totam error accusamus vero ducimus
-              officia tempora, rem doloremque voluptatem aliquid dicta minima,
-              quod aut magni impedit corporis sint. Maiores, officia. Unde
-              recusandae vitae dignissimos pariatur earum? Quo sequi, mollitia
-              hic sed cum aliquam quaerat dolorem quasi eveniet alias nostrum
-              eligendi nisi doloribus assumenda nihil, vel deserunt tempore,
-              laborum maiores cupiditate fugiat iure obcaecati? Sapiente,
-              explicabo perspiciatis. Error soluta labore tempora perspiciatis
-              magnam, quaerat porro laborum commodi eos impedit dicta
-              necessitatibus excepturi repellendus ad atque laudantium ea
-              adipisci, rem sunt ex velit. Iste placeat deleniti quidem animi.
-            </div>
+            <form class="form" name="registration" method="POST" novalidate>
+              <!-- First name -->
+              <label for="firstName" class="form__label">
+                Prénom
+                <input
+                  class="form__input"
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  pattern="[a-zA-z]{2,}"
+                  required
+                />
+              </label>
+
+              <!-- Last name -->
+              <label for="lastName" class="form__label">
+                Nom
+                <input
+                  class="form__input"
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  pattern="[a-zA-z]{2,}"
+                  required
+                />
+              </label>
+
+              <!-- Email -->
+              <label for="email" class="form__label">
+                E-mail
+                <input
+                  class="form__input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  pattern="[\w\.-]+@[\w\.-]+\.\w{2,4}"
+                  required
+                />
+              </label>
+
+              <!-- Date of birth -->
+              <label for="dateOfBirth" class="form__label">
+                Date de naissance
+                <input
+                  class="form__input"
+                  type="date"
+                  id="dateOfBirth"
+                  name="dateOfBirth"
+                  required
+                />
+              </label>
+
+              <!-- Participation count -->
+              <label for="participationCount" class="form__label">
+                À combien de tournois GameOn avez-vous déjà participé ?
+                <input
+                  class="form__input"
+                  type="number"
+                  id="participationCount"
+                  name="participationCount"
+                  min="0"
+                  max="99"
+                  required
+                />
+              </label>
+
+              <!-- Location tournament -->
+              <fieldset class="form__fieldset">
+                <legend class="form__legend">
+                  A quel tournoi souhaitez-vous participer cette année ?
+                </legend>
+
+                <div class="form__radio-group">
+                  <!-- City #1 -->
+                  <label for="location1" class="form__label-radio">
+                    <input
+                      class="form__input-radio"
+                      type="radio"
+                      id="location1"
+                      name="locationTournament"
+                    />
+                    New York
+                  </label>
+
+                  <!-- City #2 -->
+                  <label for="location2" class="form__label-radio">
+                    <input
+                      class="form__input-radio"
+                      type="radio"
+                      id="location2"
+                      name="locationTournament"
+                    />
+                    San Francisco
+                  </label>
+
+                  <!-- City #3 -->
+                  <label for="location3" class="form__label-radio">
+                    <input
+                      class="form__input-radio"
+                      type="radio"
+                      id="location3"
+                      name="locationTournament"
+                    />
+                    Seatle
+                  </label>
+
+                  <!-- City #4 -->
+                  <label for="location4" class="form__label-radio">
+                    <input
+                      class="form__input-radio"
+                      type="radio"
+                      id="location4"
+                      name="locationTournament"
+                    />
+                    Chicago
+                  </label>
+
+                  <!-- City #5 -->
+                  <label for="location5" class="form__label-radio">
+                    <input
+                      class="form__input-radio"
+                      type="radio"
+                      id="location5"
+                      name="locationTournament"
+                    />
+                    Boston
+                  </label>
+
+                  <!-- City #6 -->
+                  <label for="location6" class="form__label-radio">
+                    <input
+                      class="form__input-radio"
+                      type="radio"
+                      id="location6"
+                      name="locationTournament"
+                    />
+                    Portland
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- Term & nofications -->
+              <div class="form__checkbox-group">
+                <!-- Term -->
+                <label for="term" class="form__label-checkbox">
+                  <input
+                    class="form__input-checkbox"
+                    type="checkbox"
+                    name="term"
+                    id="term"
+                    checked
+                    required
+                  />
+                  J'ai lu et accepté les conditions d'utilisation.
+                </label>
+
+                <!-- Notification -->
+                <label for="notification" class="form__label-checkbox">
+                  <input
+                    class="form__input-checkbox"
+                    type="checkbox"
+                    name="notification"
+                    id="notification"
+                  />
+                  Je souhaite être prévenu des prochains évènements.
+                </label>
+              </div>
+
+              <!-- Submit button -->
+              <input type="submit" value="C'est parti" class="form__submit" />
+            </form>
           </div>
         </dialog>
       </main>

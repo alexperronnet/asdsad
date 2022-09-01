@@ -1,0 +1,113 @@
+@use "/src/styles/abstracts/variables" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24rem;
+}
+
+.form__fieldset {
+  display: flex;
+  flex-direction: column;
+  border: 0;
+}
+
+.form__legend {
+  font-family: $ff-heading;
+  margin-bottom: 24rem;
+  font-size: 14rem;
+}
+
+.form__radio-group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12rem;
+
+  @media (max-width: 448px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.form__checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12rem;
+}
+
+.form__label {
+  display: flex;
+  flex-direction: column;
+  gap: 16rem;
+  font-size: 14rem;
+  font-family: $ff-heading;
+  cursor: pointer;
+}
+
+.form__label-radio,
+.form__label-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12rem;
+  cursor: pointer;
+  font-size: 12rem;
+  width: fit-content;
+}
+
+.form__input {
+  height: 48rem;
+  padding: 8rem 12rem;
+  border-radius: 8rem;
+  border: 0;
+  font-size: 18rem;
+}
+
+.form__input:focus-visible {
+  outline: 2rem solid $color-blue;
+  outline-offset: 2rem;
+}
+
+.form__input-radio {
+  appearance: none;
+  width: 16rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  outline: 2rem solid $color-green;
+}
+
+.form__input-radio:checked {
+  background-color: $color-green;
+  border: 2rem solid $color-gray-dark;
+}
+
+.form__input-checkbox {
+  appearance: none;
+  width: 20rem;
+  aspect-ratio: 1;
+  background-color: $color-gray-light;
+  border-radius: 4rem;
+}
+
+.form__input-checkbox:checked {
+  background-color: $color-green;
+  background-image: url("/src/assets/icon-check-white.svg");
+  background-size: 85%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.form__submit {
+  font-size: 14rem;
+  color: $color-white;
+  background-color: $color-red;
+  border: 0;
+  padding: 12rem 56rem;
+  border-radius: 8rem;
+  width: fit-content;
+  place-self: center;
+  cursor: pointer;
+  transition: background-color 200ms linear;
+}
+
+.form__submit:hover {
+  background-color: $color-blue;
+}

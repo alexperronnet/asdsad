@@ -2,14 +2,15 @@
 
 .modal {
   all: revert;
-  max-width: 640rem;
+  max-width: 512rem;
+  width: 100%;
   padding: 0;
   border: none;
   color: $color-white;
   background-color: $color-gray-dark;
   border-radius: 8rem;
 
-  @media (max-width: 640px) {
+  @media (max-width: 512px) {
     border-radius: 0;
     min-height: 100vh;
     height: 100%;
