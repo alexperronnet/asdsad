@@ -46,7 +46,7 @@ document.addEventListener("keydown", event => {
 // Close navbar when user click outside the nav or on link
 document.addEventListener("click", event => {
   const isOutsideNav =
-    !event.target.closest(".header__nav") &&
+    event.target.closest(".header__nav-link") &&
     !event.target.closest(".header__toggle-nav")
 
   if (nav.hasAttribute("data-visible") && isOutsideNav) {
