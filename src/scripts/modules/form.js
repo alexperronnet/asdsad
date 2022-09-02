@@ -238,8 +238,6 @@ form.addEventListener("submit", event => {
   // Wait explicitly handled
   event.preventDefault()
 
-  toggleSuccess()
-
   // Check validity for all inputs before submitting
   if (
     firstNameCheckValidity(firstNameInput[0].value) &&
