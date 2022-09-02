@@ -203,10 +203,13 @@ participationCountInput[0].addEventListener("blur", () => {
   participationCountCheckValidity()
 })
 
-// Check validity for location tournament on blur
-locationTournamentInput[0].addEventListener("blur", () => {
-  locationTournamentCheckValidity()
-})
+// Check validity for each location tournament on blur
+for (let i = 0; i < locationTournamentInput.length; i++) {
+  // Throw an error if no location was selected
+  locationTournamentInput[i].addEventListener("blur", () => {
+    locationTournamentCheckValidity()
+  })
+}
 
 // Check validity for term on blur
 termInput[0].addEventListener("blur", () => {
