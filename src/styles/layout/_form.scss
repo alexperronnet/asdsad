@@ -12,6 +12,22 @@
   gap: 24rem;
 }
 
+.form[valid] {
+  visibility: hidden;
+}
+
+.success-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36rem;
+  font-family: $ff-heading;
+  text-align: center;
+  width: 100%;
+  padding: 32rem;
+}
+
 .form__fieldset {
   display: flex;
   flex-direction: column;
@@ -46,8 +62,17 @@
   gap: 12rem;
 }
 
+.form__label-checkbox:first-child {
+  order: 1;
+}
+
+.form__label-checkbox:last-child {
+  order: 3;
+}
+
 .form__checkbox-group[data-error]::after {
   content: attr(data-error);
+  order: 2;
   @include error-message;
 }
 

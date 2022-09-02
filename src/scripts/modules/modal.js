@@ -54,3 +54,5 @@ document.addEventListener("click", event => {
     closingModal()
   }
 })
+
+export { closingModal }
