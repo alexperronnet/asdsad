@@ -36,7 +36,7 @@
   @media (max-width: 768px) {
     display: block;
     width: 32rem;
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1;
     border: none;
     background: url("/src/assets/icon-menu-red.svg") no-repeat center;
     cursor: pointer;

@@ -48,7 +48,7 @@
 .modal__close-button {
   align-self: flex-end;
   width: 32rem;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 1;
   border: none;
   background: url("/src/assets/icon-close-white.svg") no-repeat center;
   cursor: pointer;
