@@ -1,0 +1,23 @@
+.repo-link {
+  position: fixed;
+  right: 16rem;
+  bottom: 16rem;
+  padding: 12rem;
+  background-color: #0f172a;
+  border-radius: 50%;
+  transition: transform 150ms ease-in-out;
+  transition: 150ms ease-in-out;
+  transition-property: transform color;
+  line-height: 0;
+}
+
+.repo-link svg {
+  width: 24rem;
+  aspect-ratio: 1;
+  fill: #f1f5f9;
+}
+
+.repo-link:hover {
+  background-color: #3b82f6;
+  transform: translateY(-5rem);
+}
