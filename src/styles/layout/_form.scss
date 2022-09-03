@@ -13,19 +13,7 @@
 }
 
 .form[valid] {
-  visibility: hidden;
-}
-
-.success-message {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 36rem;
-  font-family: $ff-heading;
-  text-align: center;
-  width: 100%;
-  padding: 32rem;
+  display: none;
 }
 
 .form__fieldset {

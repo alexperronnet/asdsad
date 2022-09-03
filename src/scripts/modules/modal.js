@@ -2,6 +2,7 @@
 const modal = document.querySelector(".modal")
 const openModalButton = document.querySelector(".hero__button")
 const closeModalButton = document.querySelector(".modal__close-button")
+const successMessageButton = document.querySelector(".success-message__button")
 const body = document.querySelector("body")
 
 // Manage closing modal
@@ -27,8 +28,13 @@ openModalButton.addEventListener("click", () => {
   body.setAttribute("no-scroll", "")
 })
 
-// Close modal
+// Close modal when use click on close button
 closeModalButton.addEventListener("click", () => {
+  closingModal()
+})
+
+// Close modal when user click on close button on success page
+successMessageButton.addEventListener("click", () => {
   closingModal()
 })
 
@@ -37,9 +43,9 @@ modal.addEventListener("cancel", event => {
   event.preventDefault()
 })
 
-// Close modal when user presse ESC key
+// Close modal when user press ESC key
 document.addEventListener("keydown", event => {
-  if (modal.hasAttribute("open") && event.keyCode === 27) {
+  if (event.keyCode === 27) {
     closingModal()
   }
 })

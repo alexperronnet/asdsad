@@ -53,3 +53,50 @@
   background: url("/src/assets/icon-close-white.svg") no-repeat center;
   cursor: pointer;
 }
+
+.success-message {
+  display: none;
+}
+
+.success-message[success] {
+  display: flex;
+  flex-direction: column;
+  gap: 48rem;
+  padding: 32rem;
+}
+
+.success-message__title {
+  font-size: 36rem;
+  font-family: $ff-heading;
+}
+
+.success-message__text {
+  font-size: 14rem;
+  line-height: 1.5;
+}
+
+.success-message__user-name {
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.success-message__user-email {
+  color: $color-red-tint;
+}
+
+.success-message__button {
+  font-size: 14rem;
+  color: $color-white;
+  background-color: $color-red;
+  border: 0;
+  padding: 12rem 56rem;
+  border-radius: 8rem;
+  width: 100%;
+  place-self: center;
+  cursor: pointer;
+  transition: background-color 200ms linear;
+}
+
+.success-message__button:hover {
+  background-color: $color-blue;
+}

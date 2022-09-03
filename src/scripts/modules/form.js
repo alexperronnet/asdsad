@@ -3,7 +3,11 @@ import { closingModal } from "/src/scripts/modules/modal"
 
 // Get DOM Elements
 const form = document.querySelector(".form")
+const closeModalButton = document.querySelector(".modal__close-button")
 const successMessage = document.querySelector(".success-message")
+const successMessageButton = document.querySelector(".success-message__button")
+const userName = document.querySelector(".success-message__user-name")
+const userEmail = document.querySelector(".success-message__user-email")
 
 // Get user exact current age
 const userAge = value => {
@@ -37,26 +41,26 @@ class Input {
   hasError() {
     // Common cases
     if (this.validity.badInput) {
-      this.error = "Veuillez rentrer une valeur correct"
+      this.error = "Vous devez saisir une valeur correct"
 
       return this.error
     }
 
     if (this.validity.valueMissing) {
-      this.error = "Veuillez remplir ce champs"
+      this.error = "Ce champs ne doit pas être vide"
 
       return this.error
     }
 
     if (this.validity.patternMismatch) {
       if (this.type === "text") {
-        this.error = "Veuillez rentrer 2 caractères alphabétiques ou plus"
+        this.error = "Vous devez saisir au moins 2 caractères alphabétiques"
 
         return this.error
       }
 
       if (this.type === "email") {
-        this.error = "Veuillez rentrer une adresse email valide"
+        this.error = "Vous devez saisir une adresse éléctronique valide"
 
         return this.error
       }
@@ -67,7 +71,7 @@ class Input {
       this.validity.rangeOverflow ||
       this.validity.stepMismatch
     ) {
-      this.error = "Veuillez rentrer un nombre entier entre 0 et 99"
+      this.error = "Vous devez saisir un nombre entier compris entre 0 et 99"
 
       return this.error
     }
@@ -98,7 +102,7 @@ class Input {
     if (this.type === "radio") {
       this.inputs.forEach(input => {
         if (!input.checked) {
-          this.error = "Veuillez sélectionner une ville"
+          this.error = "Vous devez séléctionner une ville"
 
           return this.error
         }
@@ -107,7 +111,7 @@ class Input {
 
     // particular case - Checkbox
     if (this.type === "checkbox" && !this.checked) {
-      this.error = "Veuillez accepter les conditions d'utilisations"
+      this.error = "Vous devez accepter les conditions d'utilisation"
 
       return this.error
     }
@@ -172,6 +176,24 @@ fields.forEach(field => {
   })
 })
 
+const resetForm = () => {
+  // Remove success message after 0.5 seconde after the modal is close
+  setTimeout(() => {
+    userName.innerHTML = ""
+    userEmail.innerHTML = ""
+    form.removeAttribute("valid")
+    successMessage.removeAttribute("success")
+  }, 500)
+
+  // Reset form
+  form.reset()
+
+  // Reset input state
+  fields.forEach(field => {
+    field.isValid = false
+  })
+}
+
 const validate = event => {
   // Prevent the default behavior - Wait explicitly handled
   event.preventDefault()
@@ -190,27 +212,32 @@ const validate = event => {
     })
   } else {
     form.setAttribute("valid", "")
-    successMessage.innerHTML = "Merci pour votre inscription"
+    successMessage.setAttribute("success", "")
+    userName.innerHTML = fields[0].value
+    userEmail.innerHTML = fields[2].value
 
-    // Close modal after 1 second
-    setTimeout(() => {
-      // Remove success message after 0.5 seconde after the modal is close
-      setTimeout(() => {
-        successMessage.innerHTML = ""
-
-        form.removeAttribute("valid")
-      }, 500)
-
-      closingModal()
-
-      // Reset form
-      form.reset()
-
-      // Reset input state
-      fields.forEach(field => {
-        field.isValid = false
+    // Reset modal when user press ESC key
+    if (document.addEventListener) {
+      document.addEventListener("keydown", event => {
+        if (event.keyCode === 27) {
+          resetForm()
+        }
       })
-    }, 1000)
+    }
+
+    // Reset modal when user click on close button on success page
+    if (closeModalButton.addEventListener) {
+      closeModalButton.addEventListener("click", () => {
+        resetForm()
+      })
+    }
+
+    // Reset modal when user click on close button
+    if (successMessageButton.addEventListener) {
+      successMessageButton.addEventListener("click", () => {
+        resetForm()
+      })
+    }
   }
 }
 
