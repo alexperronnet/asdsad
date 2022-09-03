@@ -1,256 +1,217 @@
 // Import function for closing modal
 import { closingModal } from "/src/scripts/modules/modal"
 
-// Get DOM elements
+// Get DOM Elements
 const form = document.querySelector(".form")
 const successMessage = document.querySelector(".success-message")
-const firstNameInput = document.querySelectorAll("#firstName")
-const lastNameInput = document.querySelectorAll("#lastName")
-const emailInput = document.querySelectorAll("#email")
-const dateOfBirthInput = document.querySelectorAll("#dateOfBirth")
-const participationCountInput = document.querySelectorAll("#participationCount")
-const locationTournamentInput = document.querySelectorAll(
-  "input[name=locationTournament]"
-)
-const termInput = document.querySelectorAll("#term")
 
-// Manage first name validity
-const firstNameCheckValidity = () => {
-  // Throw an error if input is empty
-  if (firstNameInput[0].validity.valueMissing) {
-    firstNameInput[0].closest(".form__label").dataset.error =
-      "Ce champs ne doit pas être vide"
-  }
-  // Throw an error if input doesn't match with pattern
-  else if (firstNameInput[0].validity.patternMismatch) {
-    firstNameInput[0].closest(".form__label").dataset.error =
-      "Vous devez saisir au moins 2 caractères alphatétiques"
-  }
-  // Else remove error
-  else {
-    firstNameInput[0].closest(".form__label").removeAttribute("data-error")
+// Get user exact current age
+const userAge = value => {
+  const yearInMs = 31556926000
+  const birthDate = new Date(value)
+  const birthDateInMs = birthDate.getTime()
+  const currentDate = new Date()
+  const currentDateInMs = currentDate.getTime()
+  const age = (currentDateInMs - birthDateInMs) / yearInMs
 
-    return true
-  }
+  return age
 }
 
-// Manage last name validity
-const lastNameCheckValidity = () => {
-  // Throw an error if input is empty
-  if (lastNameInput[0].validity.valueMissing) {
-    lastNameInput[0].closest(".form__label").dataset.error =
-      "Ce champs ne doit pas être vide"
-  }
-  // Throw an error if input doesn't match with pattern
-  else if (lastNameInput[0].validity.patternMismatch) {
-    lastNameInput[0].closest(".form__label").dataset.error =
-      "Vous devez saisir au moins 2 caractères alphatétiques"
-  }
-  // Else remove error
-  else {
-    lastNameInput[0].closest(".form__label").removeAttribute("data-error")
+// Create a class for manage each inputs, instead of one by one
+class Input {
+  constructor(name) {
+    this.inputs = document.querySelectorAll(`input[name="${name}"]`)
+    this.isValid = false
+    this.validity = this.inputs[0].validity
+    this.type = this.inputs[0].getAttribute("type")
+    this.value = this.inputs[0].value
+    this.error
 
-    return true
-  }
-}
-
-// Manage email validity
-const emailCheckValidity = () => {
-  // Throw an error if input is empty
-  if (emailInput[0].validity.valueMissing) {
-    emailInput[0].closest(".form__label").dataset.error =
-      "Ce champs ne doit pas être vide"
-  }
-  // Throw an error if input doesn't match with pattern
-  else if (emailInput[0].validity.patternMismatch) {
-    emailInput[0].closest(".form__label").dataset.error =
-      "Vous devez saisir une adresse éléctronique valide"
-  }
-  // Else remove error
-  else {
-    emailInput[0].closest(".form__label").removeAttribute("data-error")
-
-    return true
-  }
-}
-
-// Manage date of birth validity
-const dateOfBirthCheckValidity = () => {
-  // Get user exact current age
-  const userAge = () => {
-    const yearInMs = 31556926000
-    const DateOfBirth = new Date(dateOfBirthInput[0].value)
-    const DateOfBirthInMs = DateOfBirth.getTime()
-    const currentDate = new Date()
-    const currentDateInMs = currentDate.getTime()
-    const age = (currentDateInMs - DateOfBirthInMs) / yearInMs
-
-    return age
-  }
-
-  // Throw an error if input is empty
-  if (dateOfBirthInput[0].validity.valueMissing) {
-    dateOfBirthInput[0].closest(".form__label").dataset.error =
-      "Ce champs ne doit pas être vide"
-  }
-  // Throw an error if user age is under 0
-  else if (userAge() < 0) {
-    dateOfBirthInput[0].closest(".form__label").dataset.error =
-      "Le voyage temporel n'existe pas encore"
-  }
-  // Throw an error if user is to young
-  else if (userAge() < 18) {
-    dateOfBirthInput[0].closest(".form__label").dataset.error =
-      "Vous devez être majeur pour participer"
-  }
-  // Throw an error if user is to old
-  else if (userAge() > 100) {
-    dateOfBirthInput[0].closest(".form__label").dataset.error = `${Math.floor(
-      userAge()
-    )} ans vraiment ? Il faut vous préserver`
-  }
-  // Else remove error
-  else {
-    dateOfBirthInput[0].closest(".form__label").removeAttribute("data-error")
-
-    return true
-  }
-}
-
-// Manage participation count validity
-const participationCountCheckValidity = () => {
-  // Throw an error if input is empty
-  if (participationCountInput[0].validity.valueMissing) {
-    participationCountInput[0].closest(".form__label").dataset.error =
-      "Ce champs ne doit pas être vide"
-  }
-  // Throw am error if participation count is not between 0 & 99
-  else if (
-    participationCountInput[0].validity.rangeUnderflow ||
-    participationCountInput[0].validity.rangeOverflow ||
-    participationCountInput[0].validity.stepMismatch
-  ) {
-    participationCountInput[0].closest(".form__label").dataset.error =
-      "Vous devez saisir un nombre entier compris entre 0 et 99"
-  }
-  // Else remove error
-  else {
-    participationCountInput[0]
-      .closest(".form__label")
-      .removeAttribute("data-error")
-
-    return true
-  }
-}
-
-// Manage location tournament validity
-const locationTournamentCheckValidity = () => {
-  // Create a loop for each location
-  for (let i = 0; i < locationTournamentInput.length; i++) {
-    // Throw an error if no location was selected
-    if (!locationTournamentInput[i].checked) {
-      locationTournamentInput[0].closest(".form__fieldset").dataset.error =
-        "Vous devez séléctionner une ville"
-    }
-    // Else remove error
-    else {
-      locationTournamentInput[0]
-        .closest(".form__fieldset")
-        .removeAttribute("data-error")
-
-      return true
+    // particular case for radio & checkbox
+    if (this.type === "radio" || this.type === "checkbox") {
+      this.checked = false
     }
   }
+
+  // Generate error messages
+  hasError() {
+    // Common cases
+    if (this.validity.badInput) {
+      this.error = "Veuillez rentrer une valeur correct"
+
+      return this.error
+    }
+
+    if (this.validity.valueMissing) {
+      this.error = "Veuillez remplir ce champs"
+
+      return this.error
+    }
+
+    if (this.validity.patternMismatch) {
+      if (this.type === "text") {
+        this.error = "Veuillez rentrer 2 caractères alphabétiques ou plus"
+
+        return this.error
+      }
+
+      if (this.type === "email") {
+        this.error = "Veuillez rentrer une adresse email valide"
+
+        return this.error
+      }
+    }
+
+    if (
+      this.validity.rangeUnderflow ||
+      this.validity.rangeOverflow ||
+      this.validity.stepMismatch
+    ) {
+      this.error = "Veuillez rentrer un nombre entier entre 0 et 99"
+
+      return this.error
+    }
+
+    // Particular case - Date of birth
+    if (this.type === "date") {
+      // Throw an error if user age is under 0
+      if (userAge(this.value) < 0) {
+        this.error = "Le voyage temporel n'existe pas encore"
+
+        return this.error
+      }
+      // Throw an error if user is to young
+      else if (userAge(this.value) < 18) {
+        this.error = "Vous devez être majeur pour participer"
+
+        return this.error
+      }
+      // Throw an error if user is to old
+      else if (userAge(this.value) > 100) {
+        this.error = `${Math.floor(userAge(this.value))} ans vraiment ?`
+
+        return this.error
+      }
+    }
+
+    // particular case - Radio
+    if (this.type === "radio") {
+      this.inputs.forEach(input => {
+        if (!input.checked) {
+          this.error = "Veuillez sélectionner une ville"
+
+          return this.error
+        }
+      })
+    }
+
+    // particular case - Checkbox
+    if (this.type === "checkbox" && !this.checked) {
+      this.error = "Veuillez accepter les conditions d'utilisations"
+
+      return this.error
+    }
+  }
+
+  // Show errors generated by hasError() method
+  showError() {
+    this.inputs[0].closest(".form__data").dataset.errorVisible = true
+    this.inputs[0].closest(".form__data").dataset.error = this.error
+  }
+
+  // Remove errors & reset values
+  removeError() {
+    this.inputs[0].closest(".form__data").dataset.errorVisible = false
+    this.inputs[0].closest(".form__data").removeAttribute("data-error")
+    this.error = null
+  }
 }
 
-// Manage term validity
-const termCheckValidity = () => {
-  // Throw an error term was not accepted
-  if (!termInput[0].checked) {
-    termInput[0].closest(".form__checkbox-group").dataset.error =
-      "Vous devez accepter les conditions d'utilisation"
-  }
-  // Else remove error
-  else {
-    termInput[0].closest(".form__checkbox-group").removeAttribute("data-error")
+// Generate new input with the class Input
+const FirstName = new Input("firstName")
+const LastName = new Input("lastName")
+const Email = new Input("email")
+const BirthDate = new Input("birthDate")
+const Quantity = new Input("quantity")
+const Locations = new Input("location")
+const Terms = new Input("term")
 
-    return true
-  }
-}
+// Create an array with fields
+const fields = [
+  FirstName,
+  LastName,
+  Email,
+  BirthDate,
+  Quantity,
+  Locations,
+  Terms
+]
 
-// Check validity for first name on blur
-firstNameInput[0].addEventListener("blur", () => {
-  firstNameCheckValidity()
-})
+// Add a listener on each input
+fields.forEach(field => {
+  field.inputs.forEach(input => {
+    input.addEventListener("change", event => {
+      // Update value
+      field.value = event.target.value
+      if (field.type === "checkbox" || field.type === "radio") {
+        field.checked = event.target.checked
+      }
 
-// Check validity for last name on blur
-lastNameInput[0].addEventListener("blur", () => {
-  lastNameCheckValidity()
-})
+      // If error, show it
+      if (field.hasError()) {
+        field.showError()
+        field.isValid = false
+      }
 
-// Check validity for email on blur
-emailInput[0].addEventListener("blur", () => {
-  emailCheckValidity()
-})
-
-// Check validity for date of birth on blur
-dateOfBirthInput[0].addEventListener("blur", () => {
-  dateOfBirthCheckValidity()
-})
-
-// Check validity for participation count on blur
-participationCountInput[0].addEventListener("blur", () => {
-  participationCountCheckValidity()
-})
-
-// Check validity for each location tournament on blur
-for (let i = 0; i < locationTournamentInput.length; i++) {
-  // Throw an error if no location was selected
-  locationTournamentInput[i].addEventListener("blur", () => {
-    locationTournamentCheckValidity()
+      // If no error, remove it & validate
+      if (!field.hasError()) {
+        field.removeError()
+        field.isValid = true
+      }
+    })
   })
-}
-
-// Check validity for term on blur
-termInput[0].addEventListener("blur", () => {
-  termCheckValidity()
 })
 
-// Manage Success message
-const toggleSuccess = () => {
-  form.setAttribute("valid", "")
-  successMessage.innerHTML = "Merci pour votre inscription"
-
-  // Close modal after 1 second
-  setTimeout(() => {
-    // Remove success message after 0.5 seconde after the modal is close
-    setTimeout(() => {
-      successMessage.innerHTML = ``
-
-      form.removeAttribute("valid")
-    }, 500)
-
-    closingModal()
-
-    form.reset()
-  }, 1000)
-}
-
-// Submit form
-form.addEventListener("submit", event => {
-  // Wait explicitly handled
+const validate = event => {
+  // Prevent the default behavior - Wait explicitly handled
   event.preventDefault()
 
-  // Check validity for all inputs before submitting
-  if (
-    firstNameCheckValidity(firstNameInput[0].value) &&
-    lastNameCheckValidity(lastNameInput[0].value) &&
-    emailCheckValidity(emailInput[0].value) &&
-    dateOfBirthCheckValidity(dateOfBirthInput[0].value) &&
-    participationCountCheckValidity(participationCountInput[0].value) &&
-    locationTournamentCheckValidity(locationTournamentInput[0].value) &&
-    termCheckValidity(termInput[0].value)
-  ) {
-    toggleSuccess()
+  // Test if all items in the array are valid
+  let fieldsAreValid = fields.every(field => field.isValid)
+
+  if (!fieldsAreValid) {
+    // Filter out invalid items
+    let invalidFields = fields.filter(field => !field.isValid)
+
+    // Show error for each invalid items
+    invalidFields.forEach(field => {
+      field.hasError()
+      field.showError()
+    })
+  } else {
+    form.setAttribute("valid", "")
+    successMessage.innerHTML = "Merci pour votre inscription"
+
+    // Close modal after 1 second
+    setTimeout(() => {
+      // Remove success message after 0.5 seconde after the modal is close
+      setTimeout(() => {
+        successMessage.innerHTML = ""
+
+        form.removeAttribute("valid")
+      }, 500)
+
+      closingModal()
+
+      // Reset form
+      form.reset()
+
+      // Reset input state
+      fields.forEach(field => {
+        field.isValid = false
+      })
+    }, 1000)
   }
-})
+}
+
+form.addEventListener("submit", validate)

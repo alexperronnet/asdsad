@@ -116,7 +116,7 @@
             <!-- Form -->
             <form class="form" name="registration" method="POST" novalidate>
               <!-- First name -->
-              <label for="firstName" class="form__label">
+              <label for="firstName" class="form__label form__data">
                 <span class="form__required">Prénom</span>
                 <input
                   class="form__input"
@@ -129,7 +129,7 @@
               </label>
 
               <!-- Last name -->
-              <label for="lastName" class="form__label">
+              <label for="lastName" class="form__label form__data">
                 <span class="form__required">Nom</span>
                 <input
                   class="form__input"
@@ -142,7 +142,7 @@
               </label>
 
               <!-- Email -->
-              <label for="email" class="form__label">
+              <label for="email" class="form__label form__data">
                 <span class="form__required">E-mail</span>
                 <input
                   class="form__input"
@@ -155,27 +155,27 @@
               </label>
 
               <!-- Date of birth -->
-              <label for="dateOfBirth" class="form__label">
+              <label for="birthDate" class="form__label form__data">
                 <span class="form__required">Date de naissance</span>
                 <input
                   class="form__input"
                   type="date"
-                  id="dateOfBirth"
-                  name="dateOfBirth"
+                  id="birthDate"
+                  name="birthDate"
                   required
                 />
               </label>
 
               <!-- Participation count -->
-              <label for="participationCount" class="form__label">
+              <label for="quantity" class="form__label form__data">
                 <span class="form__required"
                   >À combien de tournois GameOn avez-vous déjà participé ?</span
                 >
                 <input
                   class="form__input"
                   type="number"
-                  id="participationCount"
-                  name="participationCount"
+                  id="quantity"
+                  name="quantity"
                   min="0"
                   max="99"
                   required
@@ -183,7 +183,7 @@
               </label>
 
               <!-- Location tournament -->
-              <fieldset class="form__fieldset">
+              <fieldset class="form__fieldset form__data">
                 <legend class="form__legend form__required">
                   A quel tournoi souhaitez-vous participer cette année ?
                 </legend>
@@ -195,7 +195,7 @@
                       class="form__input-radio"
                       type="radio"
                       id="location1"
-                      name="locationTournament"
+                      name="location"
                     />
                     New York
                   </label>
@@ -206,7 +206,7 @@
                       class="form__input-radio"
                       type="radio"
                       id="location2"
-                      name="locationTournament"
+                      name="location"
                     />
                     San Francisco
                   </label>
@@ -217,7 +217,7 @@
                       class="form__input-radio"
                       type="radio"
                       id="location3"
-                      name="locationTournament"
+                      name="location"
                     />
                     Seatle
                   </label>
@@ -228,7 +228,7 @@
                       class="form__input-radio"
                       type="radio"
                       id="location4"
-                      name="locationTournament"
+                      name="location"
                     />
                     Chicago
                   </label>
@@ -239,7 +239,7 @@
                       class="form__input-radio"
                       type="radio"
                       id="location5"
-                      name="locationTournament"
+                      name="location"
                     />
                     Boston
                   </label>
@@ -250,7 +250,7 @@
                       class="form__input-radio"
                       type="radio"
                       id="location6"
-                      name="locationTournament"
+                      name="location"
                     />
                     Portland
                   </label>
@@ -258,7 +258,7 @@
               </fieldset>
 
               <!-- Term & nofications -->
-              <div class="form__checkbox-group">
+              <div class="form__checkbox-group form__data">
                 <!-- Term -->
                 <label for="term" class="form__label-checkbox">
                   <input
@@ -266,7 +266,6 @@
                     type="checkbox"
                     name="term"
                     id="term"
-                    checked
                     required
                   />
                   <span class="form__required"
