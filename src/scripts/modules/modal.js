@@ -5,6 +5,13 @@ const closeModalButton = document.querySelector(".modal__close-button")
 const successMessageButton = document.querySelector(".success-message__button")
 const body = document.querySelector("body")
 
+// Manage opening modal
+const openingModal = () => {
+  modal.showModal()
+  // Disable body scrolling
+  body.setAttribute("no-scroll", "")
+}
+
 // Manage closing modal
 const closingModal = () => {
   modal.setAttribute("isClosing", "")
@@ -23,9 +30,7 @@ const closingModal = () => {
 
 // Open modal
 openModalButton.addEventListener("click", () => {
-  modal.showModal()
-  // Prevent body scrolling when modal is open
-  body.setAttribute("no-scroll", "")
+  openingModal()
 })
 
 // Close modal when use click on close button
