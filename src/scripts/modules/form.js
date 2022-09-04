@@ -225,7 +225,7 @@ const validate = event => {
       })
     }
 
-    // Reset modal when user click on close button on success page
+    // Reset modal when user click on close button icon
     if (closeModalButton.addEventListener) {
       closeModalButton.addEventListener("click", () => {
         resetForm()
@@ -238,6 +238,17 @@ const validate = event => {
         resetForm()
       })
     }
+
+    // Reset modal when user click outside or on link
+    document.addEventListener("click", event => {
+      if (
+        successMessage.hasAttribute("success") &&
+        !event.target.closest(".modal__content") &&
+        !event.target.closest(".hero__button")
+      ) {
+        resetForm()
+      }
+    })
   }
 }
 
