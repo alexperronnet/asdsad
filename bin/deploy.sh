@@ -1,8 +1,5 @@
 #!/usr/bin/env sh
 
-# abort on errors
-set -e
-
 # build
 npm run build
 
@@ -11,7 +8,14 @@ cd dist
 
 git init
 git add -A
-git checkout -b main
+
+# Check if a branch exists
+if git ls-remote --exit-code --heads origin deploy; then
+  git checkout main
+else
+  git checkout -b main
+fi
+
 git commit -m 'Deploy'
 git push -f git@github.com:alexperronnet/openclassrooms-p4-gameon.git main:deploy
 
