@@ -36,43 +36,6 @@ class Input {
 
   // Generate error messages
   hasError() {
-    // Common cases
-    if (this.validity.badInput) {
-      this.error = "Vous devez saisir une valeur correct";
-
-      return this.error;
-    }
-
-    if (this.validity.valueMissing) {
-      this.error = "Ce champs ne doit pas être vide";
-
-      return this.error;
-    }
-
-    if (this.validity.patternMismatch) {
-      if (this.type === "text") {
-        this.error = "Vous devez saisir au moins 2 caractères alphabétiques";
-
-        return this.error;
-      }
-
-      if (this.type === "email") {
-        this.error = "Vous devez saisir une adresse éléctronique valide";
-
-        return this.error;
-      }
-    }
-
-    if (
-      this.validity.rangeUnderflow ||
-      this.validity.rangeOverflow ||
-      this.validity.stepMismatch
-    ) {
-      this.error = "Vous devez saisir un nombre entier compris entre 0 et 99";
-
-      return this.error;
-    }
-
     // Particular case - Date of birth
     if (this.type === "date") {
       // Throw an error if user age is under 0
@@ -109,6 +72,43 @@ class Input {
     // particular case - Checkbox
     if (this.type === "checkbox" && !this.checked) {
       this.error = "Vous devez accepter les conditions d'utilisation";
+
+      return this.error;
+    }
+
+    // Common cases
+    if (this.validity.badInput) {
+      this.error = "Vous devez saisir une valeur correct";
+
+      return this.error;
+    }
+
+    if (this.validity.valueMissing) {
+      this.error = "Ce champs ne doit pas être vide";
+
+      return this.error;
+    }
+
+    if (this.validity.patternMismatch) {
+      if (this.type === "text") {
+        this.error = "Vous devez saisir au moins 2 caractères alphabétiques";
+
+        return this.error;
+      }
+
+      if (this.type === "email") {
+        this.error = "Vous devez saisir une adresse éléctronique valide";
+
+        return this.error;
+      }
+    }
+
+    if (
+      this.validity.rangeUnderflow ||
+      this.validity.rangeOverflow ||
+      this.validity.stepMismatch
+    ) {
+      this.error = "Vous devez saisir un nombre entier compris entre 0 et 99";
 
       return this.error;
     }
