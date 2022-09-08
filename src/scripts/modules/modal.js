@@ -1,69 +1,67 @@
 // Get DOM elements
-const modal = document.querySelector(".modal")
-const openModalButton = document.querySelector(".hero__button")
-const closeModalButton = document.querySelector(".modal__close-button")
-const successMessageButton = document.querySelector(".success-message__button")
-const body = document.querySelector("body")
+const modal = document.querySelector(".modal");
+const openModalButton = document.querySelector(".hero__button");
+const closeModalButton = document.querySelector(".modal__close-button");
+const successMessageButton = document.querySelector(".success-message__button");
+const body = document.querySelector("body");
 
 // Manage opening modal
 const openingModal = () => {
-  modal.showModal()
+  modal.showModal();
   // Disable body scrolling
-  body.setAttribute("no-scroll", "")
-}
+  body.setAttribute("no-scroll", "");
+};
 
 // Manage closing modal
 const closingModal = () => {
-  modal.setAttribute("isClosing", "")
+  modal.setAttribute("isClosing", "");
 
   modal.addEventListener(
     "animationend",
     () => {
-      modal.removeAttribute("isClosing")
-      modal.close()
+      modal.removeAttribute("isClosing");
+      modal.close();
       // Restore body scrolling
-      body.removeAttribute("no-scroll")
+      body.removeAttribute("no-scroll");
     },
     { once: true }
-  )
-}
+  );
+};
 
 // Open modal
 openModalButton.addEventListener("click", () => {
-  openingModal()
-})
+  openingModal();
+});
 
 // Close modal when use click on close button
 closeModalButton.addEventListener("click", () => {
-  closingModal()
-})
+  closingModal();
+});
 
 // Close modal when user click on close button on success page
 successMessageButton.addEventListener("click", () => {
-  closingModal()
-})
+  closingModal();
+});
 
 // Prevent default behaviour for ESC key for dialog
-modal.addEventListener("cancel", event => {
-  event.preventDefault()
-})
+modal.addEventListener("cancel", (event) => {
+  event.preventDefault();
+});
 
 // Close modal when user press ESC key
-document.addEventListener("keydown", event => {
+document.addEventListener("keydown", (event) => {
   if (event.keyCode === 27) {
-    closingModal()
+    closingModal();
   }
-})
+});
 
 // Close modal when user click outside or on link
-document.addEventListener("click", event => {
+document.addEventListener("click", (event) => {
   if (
     modal.hasAttribute("open") &&
     !event.target.closest(".modal__content") &&
     !event.target.closest(".hero__button")
   ) {
-    closingModal()
+    closingModal();
   }
-})
-
-export { closingModal }
+});

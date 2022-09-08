@@ -1,39 +1,36 @@
-// Import function for closing modal
-import { closingModal } from "/src/scripts/modules/modal"
-
 // Get DOM Elements
-const form = document.querySelector(".form")
-const closeModalButton = document.querySelector(".modal__close-button")
-const successMessage = document.querySelector(".success-message")
-const successMessageButton = document.querySelector(".success-message__button")
-const userName = document.querySelector(".success-message__user-name")
-const userEmail = document.querySelector(".success-message__user-email")
+const form = document.querySelector(".form");
+const closeModalButton = document.querySelector(".modal__close-button");
+const successMessage = document.querySelector(".success-message");
+const successMessageButton = document.querySelector(".success-message__button");
+const userName = document.querySelector(".success-message__user-name");
+const userEmail = document.querySelector(".success-message__user-email");
 
 // Get user exact current age
-const userAge = value => {
-  const yearInMs = 31556926000
-  const birthDate = new Date(value)
-  const birthDateInMs = birthDate.getTime()
-  const currentDate = new Date()
-  const currentDateInMs = currentDate.getTime()
-  const age = (currentDateInMs - birthDateInMs) / yearInMs
+const userAge = (value) => {
+  const yearInMs = 31556926000;
+  const birthDate = new Date(value);
+  const birthDateInMs = birthDate.getTime();
+  const currentDate = new Date();
+  const currentDateInMs = currentDate.getTime();
+  const age = (currentDateInMs - birthDateInMs) / yearInMs;
 
-  return age
-}
+  return age;
+};
 
 // Create a class for manage each inputs, instead of one by one
 class Input {
   constructor(name) {
-    this.inputs = document.querySelectorAll(`input[name="${name}"]`)
-    this.isValid = false
-    this.validity = this.inputs[0].validity
-    this.type = this.inputs[0].getAttribute("type")
-    this.value = this.inputs[0].value
-    this.error
+    this.inputs = document.querySelectorAll(`input[name="${name}"]`);
+    this.isValid = false;
+    this.validity = this.inputs[0].validity;
+    this.type = this.inputs[0].getAttribute("type");
+    this.value = this.inputs[0].value;
+    this.error;
 
     // particular case for radio & checkbox
     if (this.type === "radio" || this.type === "checkbox") {
-      this.checked = false
+      this.checked = false;
     }
   }
 
@@ -41,28 +38,28 @@ class Input {
   hasError() {
     // Common cases
     if (this.validity.badInput) {
-      this.error = "Vous devez saisir une valeur correct"
+      this.error = "Vous devez saisir une valeur correct";
 
-      return this.error
+      return this.error;
     }
 
     if (this.validity.valueMissing) {
-      this.error = "Ce champs ne doit pas être vide"
+      this.error = "Ce champs ne doit pas être vide";
 
-      return this.error
+      return this.error;
     }
 
     if (this.validity.patternMismatch) {
       if (this.type === "text") {
-        this.error = "Vous devez saisir au moins 2 caractères alphabétiques"
+        this.error = "Vous devez saisir au moins 2 caractères alphabétiques";
 
-        return this.error
+        return this.error;
       }
 
       if (this.type === "email") {
-        this.error = "Vous devez saisir une adresse éléctronique valide"
+        this.error = "Vous devez saisir une adresse éléctronique valide";
 
-        return this.error
+        return this.error;
       }
     }
 
@@ -71,74 +68,74 @@ class Input {
       this.validity.rangeOverflow ||
       this.validity.stepMismatch
     ) {
-      this.error = "Vous devez saisir un nombre entier compris entre 0 et 99"
+      this.error = "Vous devez saisir un nombre entier compris entre 0 et 99";
 
-      return this.error
+      return this.error;
     }
 
     // Particular case - Date of birth
     if (this.type === "date") {
       // Throw an error if user age is under 0
       if (userAge(this.value) < 0) {
-        this.error = "Le voyage temporel n'existe pas encore"
+        this.error = "Le voyage temporel n'existe pas encore";
 
-        return this.error
+        return this.error;
       }
       // Throw an error if user is to young
       else if (userAge(this.value) < 18) {
-        this.error = "Vous devez être majeur pour participer"
+        this.error = "Vous devez être majeur pour participer";
 
-        return this.error
+        return this.error;
       }
       // Throw an error if user is to old
       else if (userAge(this.value) > 100) {
-        this.error = `${Math.floor(userAge(this.value))} ans vraiment ?`
+        this.error = `${Math.floor(userAge(this.value))} ans vraiment ?`;
 
-        return this.error
+        return this.error;
       }
     }
 
     // particular case - Radio
     if (this.type === "radio") {
-      this.inputs.forEach(input => {
+      this.inputs.forEach((input) => {
         if (!input.checked) {
-          this.error = "Vous devez séléctionner une ville"
+          this.error = "Vous devez séléctionner une ville";
 
-          return this.error
+          return this.error;
         }
-      })
+      });
     }
 
     // particular case - Checkbox
     if (this.type === "checkbox" && !this.checked) {
-      this.error = "Vous devez accepter les conditions d'utilisation"
+      this.error = "Vous devez accepter les conditions d'utilisation";
 
-      return this.error
+      return this.error;
     }
   }
 
   // Show errors generated by hasError() method
   showError() {
-    this.inputs[0].closest(".form__data").dataset.errorVisible = true
-    this.inputs[0].closest(".form__data").dataset.error = this.error
+    this.inputs[0].closest(".form__data").dataset.errorVisible = true;
+    this.inputs[0].closest(".form__data").dataset.error = this.error;
   }
 
   // Remove errors & reset values
   removeError() {
-    this.inputs[0].closest(".form__data").dataset.errorVisible = false
-    this.inputs[0].closest(".form__data").removeAttribute("data-error")
-    this.error = null
+    this.inputs[0].closest(".form__data").dataset.errorVisible = false;
+    this.inputs[0].closest(".form__data").removeAttribute("data-error");
+    this.error = null;
   }
 }
 
 // Generate new input with the class Input
-const FirstName = new Input("firstName")
-const LastName = new Input("lastName")
-const Email = new Input("email")
-const BirthDate = new Input("birthDate")
-const Quantity = new Input("quantity")
-const Locations = new Input("location")
-const Terms = new Input("term")
+const FirstName = new Input("firstName");
+const LastName = new Input("lastName");
+const Email = new Input("email");
+const BirthDate = new Input("birthDate");
+const Quantity = new Input("quantity");
+const Locations = new Input("location");
+const Terms = new Input("term");
 
 // Create an array with fields
 const fields = [
@@ -148,108 +145,108 @@ const fields = [
   BirthDate,
   Quantity,
   Locations,
-  Terms
-]
+  Terms,
+];
 
 // Add a listener on each input
-fields.forEach(field => {
-  field.inputs.forEach(input => {
-    input.addEventListener("change", event => {
+fields.forEach((field) => {
+  field.inputs.forEach((input) => {
+    input.addEventListener("change", (event) => {
       // Update value
-      field.value = event.target.value
+      field.value = event.target.value;
       if (field.type === "checkbox" || field.type === "radio") {
-        field.checked = event.target.checked
+        field.checked = event.target.checked;
       }
 
       // If error, show it
       if (field.hasError()) {
-        field.showError()
-        field.isValid = false
+        field.showError();
+        field.isValid = false;
       }
 
       // If no error, remove it & validate
       if (!field.hasError()) {
-        field.removeError()
-        field.isValid = true
+        field.removeError();
+        field.isValid = true;
       }
-    })
-  })
-})
+    });
+  });
+});
 
 const resetForm = () => {
   // Remove success message after 0.5 seconde after the modal is close
   setTimeout(() => {
-    userName.innerHTML = ""
-    userEmail.innerHTML = ""
-    form.removeAttribute("valid")
-    successMessage.removeAttribute("success")
-  }, 500)
+    userName.innerHTML = "";
+    userEmail.innerHTML = "";
+    form.removeAttribute("valid");
+    successMessage.removeAttribute("success");
+  }, 500);
 
   // Reset form
-  form.reset()
+  form.reset();
 
   // Reset input state
-  fields.forEach(field => {
-    field.isValid = false
-  })
-}
+  fields.forEach((field) => {
+    field.isValid = false;
+  });
+};
 
-const validate = event => {
+const validate = (event) => {
   // Prevent the default behavior - Wait explicitly handled
-  event.preventDefault()
+  event.preventDefault();
 
   // Test if all items in the array are valid
-  let fieldsAreValid = fields.every(field => field.isValid)
+  let fieldsAreValid = fields.every((field) => field.isValid);
 
   if (!fieldsAreValid) {
     // Filter out invalid items
-    let invalidFields = fields.filter(field => !field.isValid)
+    let invalidFields = fields.filter((field) => !field.isValid);
 
     // Show error for each invalid items
-    invalidFields.forEach(field => {
-      field.hasError()
-      field.showError()
-    })
+    invalidFields.forEach((field) => {
+      field.hasError();
+      field.showError();
+    });
   } else {
-    form.setAttribute("valid", "")
-    successMessage.setAttribute("success", "")
-    userName.innerHTML = fields[0].value
-    userEmail.innerHTML = fields[2].value
+    form.setAttribute("valid", "");
+    successMessage.setAttribute("success", "");
+    userName.innerHTML = fields[0].value;
+    userEmail.innerHTML = fields[2].value;
 
     // Reset modal when user press ESC key
     if (document.addEventListener) {
-      document.addEventListener("keydown", event => {
+      document.addEventListener("keydown", (event) => {
         if (event.keyCode === 27) {
-          resetForm()
+          resetForm();
         }
-      })
+      });
     }
 
     // Reset modal when user click on close button icon
     if (closeModalButton.addEventListener) {
       closeModalButton.addEventListener("click", () => {
-        resetForm()
-      })
+        resetForm();
+      });
     }
 
     // Reset modal when user click on close button
     if (successMessageButton.addEventListener) {
       successMessageButton.addEventListener("click", () => {
-        resetForm()
-      })
+        resetForm();
+      });
     }
 
     // Reset modal when user click outside or on link
-    document.addEventListener("click", event => {
+    document.addEventListener("click", (event) => {
       if (
         successMessage.hasAttribute("success") &&
         !event.target.closest(".modal__content") &&
         !event.target.closest(".hero__button")
       ) {
-        resetForm()
+        resetForm();
       }
-    })
+    });
   }
-}
+};
 
-form.addEventListener("submit", validate)
+form.addEventListener("submit", validate);

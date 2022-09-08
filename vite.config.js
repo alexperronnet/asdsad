@@ -1,5 +1,5 @@
-import { defineConfig } from "vite"
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/openclassrooms-p4-gameon/"
-})
+  base: "/openclassrooms-p4-gameon/",
+});
