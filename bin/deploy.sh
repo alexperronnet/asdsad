@@ -6,17 +6,23 @@ npm run build
 # navigate into the build output directory
 cd dist
 
+# Initialize a git repository
 git init
-git add -A
 
-# Check if a branch exists
+# Check if main branch exists
 if git ls-remote --exit-code --heads origin deploy; then
   git checkout main
 else
   git checkout -b main
 fi
 
+# Add changes to git
+git add -A
+
+# Commit changes
 git commit -m 'Deploy'
-git push -f git@github.com:alexperronnet/openclassrooms-p4-gameon.git main:deploy
+
+# Push to deploy branch
+git push -f git@github.com:${USERNAME}/${REPO}.git main:deploy
 
 cd -
