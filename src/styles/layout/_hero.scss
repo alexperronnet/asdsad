@@ -5,17 +5,17 @@
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  gap: 64rem;
-  padding: 56rem;
-  margin-block: 32rem;
+  gap: 6.4rem;
+  padding: 5.6rem;
+  margin-block: 3.2rem;
   color: $color-white;
   background-color: $color-gray-dark;
-  border-radius: 8rem;
+  border-radius: 0.8rem;
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
   @media (max-width: 768px) {
-    gap: 32rem;
+    gap: 3.2rem;
     padding: 0;
     color: $color-black;
     background-color: transparent;
@@ -42,23 +42,23 @@
 }
 
 .hero__title {
-  font-size: 96rem;
+  font-size: 9.6rem;
   font-weight: 500;
   font-family: $ff-heading;
   max-width: 896rem;
 
   @media (max-width: 768px) {
-    font-size: 48rem;
+    font-size: 4.8rem;
   }
 }
 
 .hero__text {
-  font-size: 24rem;
-  max-width: 430rem;
+  font-size: 2.4rem;
+  max-width: 43rem;
   line-height: 1.5;
 
   @media (max-width: 768px) {
-    font-size: 16rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -67,24 +67,24 @@
 
   @media (max-width: 768px) {
     display: block;
-    border-radius: 8rem;
+    border-radius: 0.8rem;
   }
 }
 
 .hero__button {
   width: fit-content;
-  font-size: 18rem;
-  padding: 12rem 32rem;
+  font-size: 1.8rem;
+  padding: 1.2rem 3.2rem;
   color: $color-white;
   background-color: $color-red;
   border: none;
-  border-radius: 8rem;
+  border-radius: 0.8rem;
   cursor: pointer;
   transition: background-color 200ms linear;
 
   @media (max-width: 768px) {
-    font-size: 14rem;
-    padding-block: 8rem;
+    font-size: 1.4rem;
+    padding-block: 0.8rem;
     align-self: center;
   }
 }
