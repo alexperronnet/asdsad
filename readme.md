@@ -61,5 +61,3 @@ npm run preview
 This is an OpenClassrooms project. The code is freely reusable, but assets (images and logo) are not because they are not mine.
 
 If you are also a student of OC, you can freely use my work as inspiration, but I advise you not to copy parts of it.
-
----
